@@ -1,9 +1,5 @@
 # 🎵 DJ Graph Flow
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-Alpha-orange.svg)
-![Tech](https://img.shields.io/badge/stack-React_|_NestJS_|_SQLite-green.svg)
-
 > **Tu GPS para mezclas armónicas.** Deja de adivinar qué canción poner a continuación y empieza a navegar por tu música.
 
 ## 💡 El Concepto
