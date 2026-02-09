@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- CD Disc Body -->
+  <circle cx="50" cy="50" r="48" fill="url(#discGradient)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Inner ring (data area) -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff33" stroke-width="1"/>
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#ffffff33" stroke-width="1"/>
+
+  <!-- Center Hole -->
+  <circle cx="50" cy="50" r="15" fill="#121212" stroke="#333" stroke-width="1"/>
+  <circle cx="50" cy="50" r="6" fill="transparent" />
+
+  <!-- Shine Effect -->
+  <path d="M50 50 L98 50 A48 48 0 0 1 50 98 Z" fill="#ffffff10" style="mix-blend-mode: overlay;"/>
+
+  <defs>
+    <linearGradient id="discGradient" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#444" />
+      <stop offset="50%" stop-color="#222" />
+      <stop offset="100%" stop-color="#111" />
+    </linearGradient>
+  </defs>
+</svg>
