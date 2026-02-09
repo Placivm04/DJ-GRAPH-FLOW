@@ -1,6 +1,7 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany } from 'typeorm';
 import { Transition } from '../transitions/transition.entity';
+import { Playlist } from '../playlists/playlist.entity';
 
 @Entity('songs')
 export class Song {
@@ -33,4 +34,7 @@ export class Song {
 
   @OneToMany(() => Transition, (transition) => transition.toSong)
   incomingTransitions: Transition[];
+
+  @ManyToMany(() => Playlist, (playlist) => playlist.songs) // Optional: inverse side
+  playlists: Playlist[];
 }

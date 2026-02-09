@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import LiveView from './views/LiveView.tsx';
 import ManagerView from './views/ManagerView.tsx';
+import CratesView from './views/CratesView.tsx';
 import { MusicProvider } from './contexts/MusicContext.tsx';
 
 function App() {
@@ -14,18 +15,21 @@ function App() {
               DJ Graph Flow
             </h1>
             <Link to="/" className="hover:text-primary transition">Live</Link>
+
+            <Link to="/crates" className="hover:text-primary transition">Crates</Link>
             <Link to="/manager" className="hover:text-primary transition">Manager</Link>
           </nav>
 
           <main className="p-4">
             <Routes>
               <Route path="/" element={<LiveView />} />
+              <Route path="/crates" element={<CratesView />} />
               <Route path="/manager" element={<ManagerView />} />
             </Routes>
           </main>
         </div>
       </BrowserRouter>
-    </MusicProvider>
+    </MusicProvider >
   );
 }
 
