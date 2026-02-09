@@ -22,10 +22,10 @@ export class Song {
   @Column({ type: 'int', nullable: true })
   energy: number;
 
-  @Column('text', { array: true, default: [] })
+  @Column('simple-json', { nullable: true, default: '[]' })
   tags: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column('simple-json', { nullable: true })
   metadata: Record<string, any>;
 
   @OneToMany(() => Transition, (transition) => transition.fromSong)
