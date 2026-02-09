@@ -2,12 +2,18 @@
 import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 import type { Song, Transition } from '../lib/api';
-import { Plus, X, Trash2 } from 'lucide-react';
+import { Plus, X, Trash2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+
+type SortConfig = {
+    key: keyof Song;
+    direction: 'asc' | 'desc';
+} | null;
 
 export default function ManagerView() {
     const [songs, setSongs] = useState<Song[]>([]);
     const [showAddModal, setShowAddModal] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [sortConfig, setSortConfig] = useState<SortConfig>(null);
 
     // Transition Modal State
     const [showTransitionsModal, setShowTransitionsModal] = useState(false);
@@ -84,6 +90,36 @@ export default function ManagerView() {
             setTransitions(data);
         }
     };
+    const handleSort = (key: keyof Song) => {
+        let direction: 'asc' | 'desc' = 'asc';
+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+    };
+
+    const sortedSongs = [...songs].sort((a, b) => {
+        if (!sortConfig) return 0;
+
+        const { key, direction } = sortConfig;
+
+        if (a[key] < b[key]) {
+            return direction === 'asc' ? -1 : 1;
+        }
+        if (a[key] > b[key]) {
+            return direction === 'asc' ? 1 : -1;
+        }
+        return 0;
+    });
+
+    const getSortIcon = (key: keyof Song) => {
+        if (!sortConfig || sortConfig.key !== key) {
+            return <ArrowUpDown className="w-4 h-4 ml-1 opacity-50" />;
+        }
+        return sortConfig.direction === 'asc'
+            ? <ArrowUp className="w-4 h-4 ml-1 text-primary" />
+            : <ArrowDown className="w-4 h-4 ml-1 text-primary" />;
+    };
 
     return (
         <div className="bg-surface rounded-xl border border-white/5 min-h-[500px] p-6">
@@ -102,15 +138,43 @@ export default function ManagerView() {
                 <table className="w-full text-left border-collapse">
                     <thead>
                         <tr className="text-gray-500 border-b border-white/10">
-                            <th className="p-3">Title</th>
-                            <th className="p-3">Artist</th>
-                            <th className="p-3">BPM</th>
-                            <th className="p-3">Key</th>
+                            <th
+                                className="p-3 cursor-pointer hover:text-white transition group"
+                                onClick={() => handleSort('title')}
+                            >
+                                <div className="flex items-center">
+                                    Title {getSortIcon('title')}
+                                </div>
+                            </th>
+                            <th
+                                className="p-3 cursor-pointer hover:text-white transition group"
+                                onClick={() => handleSort('artist')}
+                            >
+                                <div className="flex items-center">
+                                    Artist {getSortIcon('artist')}
+                                </div>
+                            </th>
+                            <th
+                                className="p-3 cursor-pointer hover:text-white transition group"
+                                onClick={() => handleSort('bpm')}
+                            >
+                                <div className="flex items-center">
+                                    BPM {getSortIcon('bpm')}
+                                </div>
+                            </th>
+                            <th
+                                className="p-3 cursor-pointer hover:text-white transition group"
+                                onClick={() => handleSort('musicalKey')}
+                            >
+                                <div className="flex items-center">
+                                    Key {getSortIcon('musicalKey')}
+                                </div>
+                            </th>
                             <th className="p-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {songs.map(song => (
+                        {sortedSongs.map(song => (
                             <tr key={song.id} className="border-b border-white/5 hover:bg-white/5 transition">
                                 <td className="p-3 font-medium">{song.title}</td>
                                 <td className="p-3 text-gray-400">{song.artist}</td>
