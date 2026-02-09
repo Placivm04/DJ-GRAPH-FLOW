@@ -44,3 +44,17 @@ Abre tu terminal y descarga el código:
 ```bash
 git clone [https://github.com/TU-USUARIO/DJ-GRAPH-FLOW.git](https://github.com/TU-USUARIO/DJ-GRAPH-FLOW.git)
 cd DJ-GRAPH-FLOW
+```
+
+### 2. Instalas dependencias
+
+```bash
+npm install
+npm run install-all
+```
+
+### 3. Arranca la fiesta 😁
+
+```bash
+npm start
+```
