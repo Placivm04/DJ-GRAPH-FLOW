@@ -10,14 +10,10 @@
 
 La mayoría de los softwares de DJ te muestran una lista plana de canciones. **DJ Graph Flow** es diferente: visualiza tu biblioteca como un **Grafo Dirigido**.
 
-[Image of graph database nodes and edges]
-
 * **Nodos (Canciones):** Cada punto es una pista con sus datos (BPM, Key, Energía).
 * **Enlaces (Transiciones):** Las líneas conectan canciones que *sabes* que funcionan bien juntas.
 
 Si estás pinchando la **Canción A**, el sistema te muestra instantáneamente todos los caminos posibles hacia la **Canción B**, basándose en compatibilidad armónica (Camelot Wheel) y tus experiencias previas.
-
-[Image of camelot wheel harmonic mixing]
 
 ## ✨ Características Principales
 
